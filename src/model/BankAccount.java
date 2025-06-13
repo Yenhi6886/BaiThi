@@ -16,16 +16,28 @@ public abstract class BankAccount {
         this.createdDate = createdDate;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getAccountCode() {
         return accountCode;
     }
 
+    public void setAccountCode(String accountCode) {
+        this.accountCode = accountCode;
+    }
+
     public String getOwnerName() {
         return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
     public abstract String getInfoForCSV();
