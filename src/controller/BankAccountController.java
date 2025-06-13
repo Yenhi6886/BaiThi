@@ -50,7 +50,11 @@ public class BankAccountController {
 
     private int getNextId() {
         if (accounts.isEmpty()) return 1;
-        return accounts.get(accounts.size() - 1).getId() + 1;
+        int maxId = 0;
+        for (BankAccount acc : accounts) {
+            if (acc.getId() > maxId) maxId = acc.getId();
+        }
+        return maxId + 1;
     }
 
     public void deleteAccount(String accountCode) throws NotFoundBankAccountException {
@@ -79,5 +83,12 @@ public class BankAccountController {
             }
         }
         if (!found) System.out.println("Không tìm thấy tài khoản nào.");
+    }
+
+    public boolean isAccountCodeExists(String code) {
+        for (BankAccount acc : accounts) {
+            if (acc.getAccountCode().equals(code)) return true;
+        }
+        return false;
     }
 }

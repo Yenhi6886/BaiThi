@@ -2,9 +2,12 @@ package model;
 
 public abstract class BankAccount {
     public int id;
-    protected String accountCode;
-    protected String ownerName;
-    protected String createdDate;
+    protected String accountCode; //ma tai khoan
+    protected String ownerName; //ten chu so huu
+    protected String createdDate; //ngay tao
+
+    public BankAccount() {
+    }
 
     public BankAccount(int id, String accountCode, String ownerName, String createdDate) {
         this.id = id;

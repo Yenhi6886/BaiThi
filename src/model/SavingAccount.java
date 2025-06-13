@@ -1,10 +1,10 @@
 package model;
 
 public class SavingAccount extends BankAccount {
-    private double savingAmount;
-    private String savingDate;
-    private double interestRate;
-    private int termMonths;
+    private double savingAmount; //So tien tiet kiem
+    private String savingDate;  //Ngay tiet kiem
+    private double interestRate; //Lai suat
+    private int termMonths; //Ky han thang
 
     public SavingAccount(int id, String accountCode, String ownerName, String createdDate,
                          double savingAmount, String savingDate, double interestRate, int termMonths) {

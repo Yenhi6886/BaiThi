@@ -49,29 +49,72 @@ public class Main {
         String type = sc.nextLine();
         try {
             System.out.print("Mã tài khoản: ");
-            String code = sc.nextLine();
+            String code = sc.nextLine().trim();
+            if (code.isEmpty()) {
+                System.out.println("Mã tài khoản không được để trống.");
+                return;
+            }
+            // Kiểm tra mã tài khoản trùng
+            if (controller.isAccountCodeExists(code)) {
+                System.out.println("Mã tài khoản đã tồn tại.");
+                return;
+            }
             System.out.print("Tên chủ tài khoản: ");
-            String name = sc.nextLine();
+            String name = sc.nextLine().trim();
+            if (name.isEmpty()) {
+                System.out.println("Tên chủ tài khoản không được để trống.");
+                return;
+            }
             System.out.print("Ngày tạo: ");
-            String created = sc.nextLine();
+            String created = sc.nextLine().trim();
+            if (created.isEmpty()) {
+                System.out.println("Ngày tạo không được để trống.");
+                return;
+            }
 
             if (type.equals("1")) {
                 System.out.print("Số tiền gửi: ");
-                double amount = Double.parseDouble(sc.nextLine());
+                double amount = Double.parseDouble(sc.nextLine().trim());
+                if (amount < 0) {
+                    System.out.println("Số tiền gửi phải >= 0.");
+                    return;
+                }
                 System.out.print("Ngày gửi: ");
-                String date = sc.nextLine();
+                String date = sc.nextLine().trim();
+                if (date.isEmpty()) {
+                    System.out.println("Ngày gửi không được để trống.");
+                    return;
+                }
                 System.out.print("Lãi suất (%): ");
-                double rate = Double.parseDouble(sc.nextLine());
+                double rate = Double.parseDouble(sc.nextLine().trim());
+                if (rate < 0) {
+                    System.out.println("Lãi suất phải >= 0.");
+                    return;
+                }
                 System.out.print("Kỳ hạn (tháng): ");
-                int term = Integer.parseInt(sc.nextLine());
+                int term = Integer.parseInt(sc.nextLine().trim());
+                if (term <= 0) {
+                    System.out.println("Kỳ hạn phải > 0.");
+                    return;
+                }
                 controller.addAccount(new SavingAccount(0, code, name, created, amount, date, rate, term));
             } else {
                 System.out.print("Số thẻ: ");
-                String card = sc.nextLine();
+                String card = sc.nextLine().trim();
+                if (card.isEmpty()) {
+                    System.out.println("Số thẻ không được để trống.");
+                    return;
+                }
                 System.out.print("Số dư: ");
-                double balance = Double.parseDouble(sc.nextLine());
+                double balance = Double.parseDouble(sc.nextLine().trim());
+                if (balance < 0) {
+                    System.out.println("Số dư phải >= 0.");
+                    return;
+                }
                 controller.addAccount(new PaymentAccount(0, code, name, created, card, balance));
             }
+        } catch (NumberFormatException e) {
+            System.out.println("Lỗi nhập số: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Lỗi nhập liệu: " + e.getMessage());
         }
